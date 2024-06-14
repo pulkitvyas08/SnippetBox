@@ -1,1 +1,4 @@
 # SnippetBox
+
+- Go
+- MySQL
