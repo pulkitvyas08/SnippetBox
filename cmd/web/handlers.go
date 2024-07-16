@@ -98,7 +98,9 @@ func (app *application) snippetCreatePost(w http.ResponseWriter, r *http.Request
 	}
 
 	if len(form.FieldErrors) > 0 {
-		fmt.Fprint(w, form.FieldErrors)
+		data := app.newTemplateData(r)
+		data.Form = form
+		app.render(w, http.StatusUnprocessableEntity, "create.html", data)
 		return
 	}
 
