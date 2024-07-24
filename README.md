@@ -5,7 +5,7 @@
 
 ## How to run
 
-```terminal
+```bash
   go run ./cmd/web
 ```
 
