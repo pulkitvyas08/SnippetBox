@@ -45,4 +45,21 @@ func TestPingE2E(t *testing.T) {
 	// Test server
 	ts := httptest.NewTLSServer(app.routes())
 	defer ts.Close()
+
+	rs, err := ts.Client().Get(ts.URL + "/ping")
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	assert.Equal(t, rs.StatusCode, http.StatusOK)
+
+	defer rs.Body.Close()
+	body, err := io.ReadAll(rs.Body)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	bytes.TrimSpace(body)
+
+	assert.Equal(t, string(body), "OK")
 }
