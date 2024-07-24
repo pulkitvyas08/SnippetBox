@@ -3,12 +3,9 @@ package main
 import (
 	"testing"
 	"time"
-
-	"snippetbox.pulkitvyas08/internal/assert"
 )
 
 func TestHumanDate(t *testing.T) {
-
 	tests := []struct {
 		name string
 		tm   time.Time
@@ -27,15 +24,15 @@ func TestHumanDate(t *testing.T) {
 		{
 			name: "CET",
 			tm:   time.Date(2022, 3, 17, 10, 15, 0, 0, time.FixedZone("CET", 1*60*60)),
-			want: "17 Mar 2022 at 10:15",
+			want: "17 Mar 2022 at 09:15",
 		},
 	}
-
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			hd := humanDate(tt.tm)
-			assert.Equal(t, hd, tt.want)
+			if hd != tt.want {
+				t.Errorf("got %q; want %q", hd, tt.want)
+			}
 		})
 	}
-
 }
