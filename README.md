@@ -25,4 +25,6 @@
 
 ```bash
   go test ./cmd/web
+
+  go test -v ./cmd/web
 ```
