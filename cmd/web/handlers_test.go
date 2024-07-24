@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"io"
+	"log"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -33,4 +34,15 @@ func TestPing(t *testing.T) {
 	bytes.TrimSpace(body)
 
 	assert.Equal(t, string(body), "OK")
+}
+
+func TestPingE2E(t *testing.T) {
+	app := &application{
+		errorLog: log.New(io.Discard, "", 0),
+		infoLog:  log.New(io.Discard, "", 0),
+	}
+
+	// Test server
+	ts := httptest.NewTLSServer(app.routes())
+	defer ts.Close()
 }
