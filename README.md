@@ -20,3 +20,9 @@
 
   ./web
 ```
+
+## How to test
+
+```bash
+  go test ./cmd/web
+```
