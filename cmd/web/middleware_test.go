@@ -10,7 +10,7 @@ import (
 	"snippetbox.pulkitvyas08/internal/assert"
 )
 
-func TestMiddleWare(t *testing.T) {
+func TestSecureHeaders(t *testing.T) {
 	rr := httptest.NewRecorder()
 
 	r, err := http.NewRequest(http.MethodGet, "/", nil)
