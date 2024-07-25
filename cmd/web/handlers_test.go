@@ -36,6 +36,8 @@ func TestPing(t *testing.T) {
 }
 
 func TestPingE2E(t *testing.T) {
+	t.Parallel()
+
 	app := newTestApplication(t)
 
 	ts := newTestServer(t, app.routes())
