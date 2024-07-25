@@ -76,10 +76,11 @@ func (ts *testServer) get(t *testing.T, urlPath string) (int, http.Header, strin
 	return rs.StatusCode, rs.Header, string(body)
 }
 
-var csrfTokenRX = regexp.MustCompile(`<input type='hidden' name='csrf_token' value='(.+)'>`)
+var csrfTokenRX = regexp.MustCompile(`<input type="hidden" name="csrf_token" value="(.+?)" />`)
 
 func extractCSRFToken(t *testing.T, body string) string {
-	matches := csrfTokenRX.FindString(body)
+
+	matches := csrfTokenRX.FindStringSubmatch(body)
 	if len(matches) < 2 {
 		t.Fatal("no csrf token found in body")
 	}
